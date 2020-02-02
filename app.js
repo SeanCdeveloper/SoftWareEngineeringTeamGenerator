@@ -1,9 +1,14 @@
+const fs = require("fs");
 const inquirer = require("inquirer");
+const util = require("util");
 
-async function promptUser() {
+//const writeFileAsync = util.promisify(fs.writeFile);
+
+/*async function promptUser() {
     let data = {};
     let queryData = {};
-    return inquirer.prompt([
+    */
+     inquirer.prompt([
         {
         type: "input",
         message: "What is your name?",
@@ -20,12 +25,26 @@ async function promptUser() {
         name: "id",
         },
         {
-        type: "input",
-        message: "What is your role in company?",
-        name: "role"
-        }
-    ])
-}
+        type: "list",
+        message: "What is your role in the company?",
+        name: "role", 
+        choices: [
+            {
+               role: "Manager", value: "Manager"
+            },
+            {
+                role: "Intern", value: "Intern"
+            },
+            {
+                role: "Engineer", value: "Engineer"
+            },
+        ]}
+    ]).then((response) => {
+        console.log(response);
+        console.log(response.name);
+        console.log(response.email);
+    });
 
-// Setting Up Classes, below:
+
+
 
