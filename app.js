@@ -41,8 +41,6 @@ const util = require("util");
         ]}
     ]).then((response) => {
         console.log(response);
-        console.log(response.name);
-        console.log(response.email);
     });
 
 
