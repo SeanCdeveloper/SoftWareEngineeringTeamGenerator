@@ -20,7 +20,7 @@ How do you deliver this? Here are some guidelines:
 
 * Your app will run as a Node CLI to gather information about each employee.
 
-* Below is an example of what your application may look like. Remember, the styling is completely up to you so try to make it unique.
+* Below is an example of what your application may look like. Remember, the styling is completely up to you, so try to make it unique.
 
 ![Employee Summary 1](./Assets/10-OOP-homework-demo-1)
 ![Employee Summary 2](./Assets/10-OOP-homework-demo-2)
@@ -100,25 +100,25 @@ The other three classes will extend `Employee`.
 
 In addition to `Employee`'s properties and methods, `Manager` will also have:
 
-  * officeNumber
+  * [√] officeNumber
 
-  * getRole() // Overridden to return 'Manager'
+  * [√] getRole() // Overridden to return 'Manager'
 
 In addition to `Employee`'s properties and methods, `Engineer` will also have:
 
-  * github  // GitHub username
+  * [√] github  // GitHub username
 
-  * getGithub()
+  * [√] getGithub()
 
-  * getRole() // Overridden to return 'Engineer'
+  * [√] getRole() // Overridden to return 'Engineer'
 
 In addition to `Employee`'s properties and methods, `Intern` will also have:
 
-  * school 
+  * [√] school 
 
-  * getSchool()
+  * [√] getSchool()
 
-  * getRole() // Overridden to return 'Intern'
+  * [√] getRole() // Overridden to return 'Intern'
 
 ### User input
 
