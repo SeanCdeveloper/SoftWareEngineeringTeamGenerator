@@ -6,7 +6,19 @@ One of the most important aspects of programming is writing code that is readabl
 
 ## Instructions
 
-You will build a software engineering team generator command line application. The application will prompt the user for information about the team manager and then information about the team members. The user can input any number of team members, and they may be a mix of engineers and interns. This assignment must also pass all unit tests. When the user has completed building the team, the application will create an HTML file that displays a nicely formatted team roster based on the information provided by the user. Following the [common templates for user stories](https://en.wikipedia.org/wiki/User_story#Common_templates), we can frame this challenge as follows:
+You will build a software engineering team generator command line application. 
+
+[?√]  The application will prompt the user for information about the team manager and then information about the team members. 
+
+[?] The user can input any number of team members, and they may be a mix of engineers and interns. 
+
+[] This assignment must also pass all unit tests. 
+
+[] When the user has completed building the team, the application will create an HTML file that displays a nicely formatted team roster based on the information provided by the user. 
+
+
+
+Following the [common templates for user stories](https://en.wikipedia.org/wiki/User_story#Common_templates), we can frame this challenge as follows:
 
 ```
 As a manager
@@ -82,10 +94,10 @@ app.js         // Runs the application
 * All tests must pass.
 
 ### Classes
-[] The project must have these classes: `Employee`, `Manager`, `Engineer`,
+[√] The project must have these classes: `Employee`, `Manager`, `Engineer`,
 `Intern`. The tests for these classes in the `tests` directory must all pass.
 
-[] The first class is an `Employee` parent class with the following properties and
+[√] The first class is an `Employee` parent class with the following properties and
 methods:
 
   * [√] name
