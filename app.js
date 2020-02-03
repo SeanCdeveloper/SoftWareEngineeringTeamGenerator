@@ -1,6 +1,7 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
-const util = require("util");
+//  const util = require("util");
+const jest = require("jest");
 
 //const writeFileAsync = util.promisify(fs.writeFile);
 
@@ -40,6 +41,7 @@ const util = require("util");
             },
         ]}
     ]).then((response) => {
+        console.log("Employee Information:")
         console.log(response);
     });
 
