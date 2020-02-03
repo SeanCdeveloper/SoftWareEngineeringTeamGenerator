@@ -6,29 +6,28 @@ const jest = require("jest");
 //const writeFileAsync = util.promisify(fs.writeFile);
 
 /*async function promptUser() {
-    let data = {};
-    let queryData = {};
     */
+   memberData = {};
      inquirer.prompt([
         {
         type: "input",
         message: "What is your name?",
-        name: "name"
+        name: "memberName"
         },
         {
         type: "email",
         message: "What is your email?",
-        name: "email"
+        name: "memberEmail"
         }, 
         {
         type: "input",
         message: "What is your id?",
-        name: "id",
+        name: "memberId",
         },
         {
         type: "list",
         message: "What is your role in the company?",
-        name: "role", 
+        name: "memberRole", 
         choices: [
             {
                role: "Manager", value: "Manager"
@@ -43,8 +42,29 @@ const jest = require("jest");
     ]).then((response) => {
         console.log("Employee Information:")
         console.log(response);
+        const memberName = response.memberName;
+        const memberEmail = response.memberEmail;
+        const memberId = response.memberId;
+        const memberRole = response.memberRole;
+        
+        memberData.memberName = memberName; 
+        memberData.memberEmail = memberEmail;
+        memberData.memberId = memberId;
+        memberData.memberRole = memberRole;
     });
 
 
 
+/* 
+    Verifying that memberData Object is working;
 
+    console.log(memberName);
+    console.log(memberEmail);
+    console.log(memberId);
+    console.log(memberRole);
+
+    console.log(memberData.memberName);
+    console.log(memberData.memberEmail);
+    console.log(memberData.memberId);
+    console.log(memberData.memberRole);
+*/
