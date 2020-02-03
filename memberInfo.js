@@ -47,12 +47,13 @@ const jest = require("jest");
         const memberId = response.memberId;
         const memberRole = response.memberRole;
         
+        memberData.memberRole = memberRole;
         memberData.memberName = memberName; 
         memberData.memberEmail = memberEmail;
         memberData.memberId = memberId;
-        memberData.memberRole = memberRole;
     });
 
+    
 
 
 /* 

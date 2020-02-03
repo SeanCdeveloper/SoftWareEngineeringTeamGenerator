@@ -1,10 +1,13 @@
 const inquirer = require("inquirer");
 const jest = require("jest");
+// var http = require("http");
+// var fs = require("fs");
+//const members = require("./members")
 
 let teamData = {};
 inquirer.prompt([
     {
-        type: "input", 
+        type: "input",
         message: "What is the name of the Team Manager?",
         name: "managerName"
     },
@@ -29,19 +32,14 @@ inquirer.prompt([
     teamData.numOfEngineers = numOfEngineers;
     teamData.numofInterns = numOfInterns;
 }).then(() => {
-
+    
 });
-
-
-
-
-
 
 
 
 /*
 
-Chccking that Data is coming through correctly: 
+Chccking that Data is coming through correctly:
 
 console.log(managerName);
 console.log(numOfEngineers);
