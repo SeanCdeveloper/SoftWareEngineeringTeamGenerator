@@ -10,6 +10,21 @@ const jest = require("jest");
    memberData = {};
      inquirer.prompt([
         {
+            type: "list",
+            message: "What is your role in the company?",
+            name: "memberRole", 
+            choices: [
+                {
+                   role: "Manager", value: "Manager"
+                },
+                {
+                    role: "Intern", value: "Intern"
+                },
+                {
+                    role: "Engineer", value: "Engineer"
+                },
+        ]},
+        {
         type: "input",
         message: "What is your name?",
         name: "memberName"
@@ -24,21 +39,6 @@ const jest = require("jest");
         message: "What is your id?",
         name: "memberId",
         },
-        {
-        type: "list",
-        message: "What is your role in the company?",
-        name: "memberRole", 
-        choices: [
-            {
-               role: "Manager", value: "Manager"
-            },
-            {
-                role: "Intern", value: "Intern"
-            },
-            {
-                role: "Engineer", value: "Engineer"
-            },
-        ]}
     ]).then((response) => {
         console.log("Employee Information:")
         console.log(response);
@@ -53,7 +53,7 @@ const jest = require("jest");
         memberData.memberId = memberId;
     });
 
-        
+
 
 
 /* 
