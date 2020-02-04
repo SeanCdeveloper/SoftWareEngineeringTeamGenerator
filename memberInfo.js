@@ -53,7 +53,7 @@ const jest = require("jest");
         memberData.memberId = memberId;
     });
 
-    
+        
 
 
 /* 
