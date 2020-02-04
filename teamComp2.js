@@ -54,7 +54,7 @@ console.log(teamData.numOfInterns);
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Engineer HTML</title>
+        <title>Main HTML</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
             integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
@@ -73,7 +73,7 @@ console.log(teamData.numOfInterns);
     
     <body>
         <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-            <div class="card-header">this.name<br>Engineer</div>
+            <div class="card-header">this.role<br>Name</div>
             <div class="card-body">
                 <div class="card">
                     <ul class="list-group list-group-flush">
