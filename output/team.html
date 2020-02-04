@@ -14,8 +14,13 @@
         margin-left: 45%;
         font-size: 16pt;
         text-decoration: underline;
-
     }
+
+    #teamInfo {
+        text-align: center;
+        margin-top: 2%;
+    }
+    
 </style>
 
 <body>
@@ -30,6 +35,14 @@
                 </div>
             </nav>
         </div>
+        <div id="teamInfo" class="row">
+            <h1>Team Information:</h1>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>Manager Name:</b>&nbsp; ${teamData.managerName}</li>
+                <li class="list-group-item"><b>Number of Engineers:</b>&nbsp; ${teamData.numOfEngineers}</li>
+                <li class="list-group-item"><b>Number of Interns:</b>&nbsp; ${teamData.numOfInterns}</li>
+            </ul>
+        </div>
     </div>
 </body>
 
@@ -39,6 +52,9 @@
 
 
 <!--
+    <div>Manager Name: ${teamData.managerName}</div>
+            <div>Number of Engineers: ${teamData.numOfEngineers}</div>
+            <div>Number of Interns: ${teamData.numOfInterns}</div>
 
     <a href="/frameworks">Frameworks</a> |
                 <a href="/food">Food</a>

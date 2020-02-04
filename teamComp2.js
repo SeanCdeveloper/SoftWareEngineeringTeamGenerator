@@ -84,9 +84,6 @@ console.log(teamData.numOfInterns);
                 </div>
             </div>
         </div>
-        <div>${teamData.managerName}</div>
-        <div>${teamData.numOfEngineers}</div>
-        <div>${teamData.numOfInterns}</div>
     
     </body>
     
