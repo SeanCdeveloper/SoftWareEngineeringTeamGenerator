@@ -133,6 +133,10 @@ async function init() {
 
 init();
 
+module.exports = generateHTML;
+
+/* At some point, I have to create a new instance of each Employee Object */
+
 
 
 
