@@ -2,6 +2,7 @@ const inquirer = require("inquirer");
 const jest = require("jest");
 const util = require("util");
 const fs = require("fs");
+const Engineer = require("./lib/Engineer")
 // var http = require("http");
 // var fs = require("fs");
 //const members = require("./members")
@@ -38,6 +39,12 @@ return inquirer.prompt([
     teamData.numOfEngineers = numOfEngineers;
     teamData.numOfInterns = numOfInterns;    
 
+    if (numOfEngineers > 0) {
+        console.log("yes");
+        //new Engineer();
+    } else {
+        console.log("err");
+    }
     return teamData;
 });
 }
@@ -92,6 +99,9 @@ function generateHTML(teamData) {
                </ul>
            </div>
        </div>
+       <script>
+        console.log("hello");
+       </script>
    </body>
    
    </html>
