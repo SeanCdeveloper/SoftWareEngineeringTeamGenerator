@@ -36,6 +36,8 @@ return inquirer.prompt([
     teamData.managerName = managerName;
     teamData.numOfEngineers = numOfEngineers;
     teamData.numofInterns = numOfInterns;    
+
+    return JSON.stringify(teamData);
 });
 }
 
