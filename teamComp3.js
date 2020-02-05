@@ -55,6 +55,29 @@ return inquirer.prompt([
     teamData.managerEmail = managerEmail;
     teamData.managerOffice = managerOffice;
     teamData.memberAdd = memberAdd;
+
+    switch (memberAdd) {
+        case "Engineer":
+            console.log("chillin' Engineer");
+            break;
+        case "Intern":
+            console.log("chilin' Intern");
+        default: 
+        /*
+        inquirer.prompt([
+            {
+                type: "list",
+                message: "What type of member do you want to add?",
+                name: "memberAdd",
+                choices: [
+                    {role: "Intern", value: "Intern"},
+                    {role: "Engineer", value: "Engineer"}
+                ]
+            },
+        ])
+        */
+    }
+
  /*
     if (teamData.memberAdd === "Engineer") {
         console.log("Engineer");
@@ -212,6 +235,23 @@ module.exports = generateHTML;
 
 
 /*
+
+if (role === Main._ENGINEER) {
+                this._teamArray.push(new Engineer(name, email, github));
+            }
+            if (role === Main._INTERN) {
+                this._teamArray.push(new Intern(name, email, school));
+            }
+            if (role === Main._MANAGER) {
+                this._teamArray.push(new Manager(name, email, roomNumber));
+            }
+        }
+
+        this._teamArray = [
+            new Engineer('engineer name', 'engineer email', 'engineer github'),
+            new Intern('intern name', 'intern email', 'intern school'),
+            new Manager('manager name', 'manager email', 'manager room number'),
+        ]
 
 Chccking that Data is coming through correctly:
 
