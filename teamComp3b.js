@@ -55,7 +55,7 @@ return inquirer.prompt([
     teamData.managerEmail = managerEmail;
     teamData.managerOffice = managerOffice;
     teamData.memberAdd = memberAdd;
- /*
+ 
     if (teamData.memberAdd === "Engineer") {
         console.log("Engineer");
         return inquirer.prompt([
@@ -100,11 +100,8 @@ return inquirer.prompt([
         }).then((response) => {
             let memberAdd = response.memberAdd;
             teamData.memberAdd = response.memberAdd;
-            
         });
-        
     }
-    */
     return teamData;
 });
 }

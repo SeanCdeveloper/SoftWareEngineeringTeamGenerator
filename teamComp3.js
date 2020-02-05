@@ -41,8 +41,17 @@ return inquirer.prompt([
             {role: "Engineer", value: "Engineer"}
         ]
     },
+    {
+        type: "input",
+        message: "Do you want to add another member?",
+        name: "furtherQuery",
+        choices: [
+            {choice: "yes", value: true},
+            {choice: "no", value: false}
+        ]
+    },
 ]).then((response) => {
-    console.log("Team Composition: ")
+    console.log("Team Composition: ");
     console.log(response);
     let managerName = response.managerName;
     let managerId = response.managerId;
@@ -54,14 +63,20 @@ return inquirer.prompt([
     teamData.managerId = managerId;
     teamData.managerEmail = managerEmail;
     teamData.managerOffice = managerOffice;
-    teamData.memberAdd = memberAdd;
+    //teamData.memberAdd = memberAdd;
+    console.log("teamData-----------");
+    console.log(teamData);
+    
+    let furtherQuery = response.furtherQuery;
+    console.log(furtherQuery);
 
+    /* May want to put an async addition here.  I want this to run after all the members are created */
     switch (memberAdd) {
         case "Engineer":
-            console.log("chillin' Engineer");
+            console.log("new Engineer");
             break;
         case "Intern":
-            console.log("chilin' Intern");
+            console.log("new Intern");
         default: 
         /*
         inquirer.prompt([
@@ -122,10 +137,8 @@ return inquirer.prompt([
             ]);
         }).then((response) => {
             let memberAdd = response.memberAdd;
-            teamData.memberAdd = response.memberAdd;
-            
+            teamData.memberAdd = response.memberAdd; 
         });
-        
     }
     */
     return teamData;

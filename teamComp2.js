@@ -41,8 +41,17 @@ return inquirer.prompt([
             {role: "Engineer", value: "Engineer"}
         ]
     },
+    {
+        type: "input",
+        message: "Do you want to add another member?",
+        name: "furtherQuery",
+        choices: [
+            {choice: "yes", value: true},
+            {choice: "no", value: false}
+        ]
+    },
 ]).then((response) => {
-    console.log("Team Composition: ")
+    console.log("Team Composition: ");
     console.log(response);
     let managerName = response.managerName;
     let managerId = response.managerId;
@@ -54,14 +63,43 @@ return inquirer.prompt([
     teamData.managerId = managerId;
     teamData.managerEmail = managerEmail;
     teamData.managerOffice = managerOffice;
-    teamData.memberAdd = memberAdd;
+    //teamData.memberAdd = memberAdd;
+    console.log("teamData-----------");
+    console.log(teamData);
+    
+    let furtherQuery = response.furtherQuery;
+    console.log(furtherQuery);
+
+    /* May want to put an async addition here.  I want this to run after all the members are created */
+    switch (memberAdd) {
+        case "Engineer":
+            console.log("new Engineer");
+            break;
+        case "Intern":
+            console.log("new Intern");
+        default: 
+        /*
+        inquirer.prompt([
+            {
+                type: "list",
+                message: "What type of member do you want to add?",
+                name: "memberAdd",
+                choices: [
+                    {role: "Intern", value: "Intern"},
+                    {role: "Engineer", value: "Engineer"}
+                ]
+            },
+        ])
+        */
+    }
+
  /*
     if (teamData.memberAdd === "Engineer") {
         console.log("Engineer");
         return inquirer.prompt([
             {
                 type: "input",
-                message: "What the Engineer's GitHub username?",
+                message: "What is the Engineer's GitHub username?",
                 name: "gitUserName"
             }
         ]).then((response) => {
@@ -84,7 +122,23 @@ return inquirer.prompt([
             teamData.internSchool = internSchool;
             console.log(internSchool);
             console.log(teamData.internSchool);
-        })
+            
+        }).then((response) => {
+            return inquirer.prompt([
+                {
+                    type: "list",
+                    message: "What type of member do you want to add?",
+                    name: "memberAdd",
+                    choices: [
+                        {role: "Intern", value: "Intern"},
+                        {role: "Intern", value: "Engineer"}
+                    ]
+                }
+            ]);
+        }).then((response) => {
+            let memberAdd = response.memberAdd;
+            teamData.memberAdd = response.memberAdd; 
+        });
     }
     */
     return teamData;
@@ -141,7 +195,7 @@ function generateHTML(teamData) {
                    <li class="list-group-item"><b>Manager Office:</b>&nbsp; ${teamData.managerOffice}</li>
                    <li class="list-group-item"><b>New Member Added:</b>&nbsp; ${teamData.memberAdd}</li>
                    <li class="list-group-item"><b>New Member Added:</b>&nbsp; ${teamData.gitUserName}</li>
-                   <li class="list-group-item"><b>New Member Added:</b>&nbsp; ${teamData.school}</li>
+                   <li class="list-group-item"><b>New Member Added:</b>&nbsp; ${teamData.internSchool}</li>
                </ul>
            </div>
        </div>
@@ -194,6 +248,23 @@ module.exports = generateHTML;
 
 
 /*
+
+if (role === Main._ENGINEER) {
+                this._teamArray.push(new Engineer(name, email, github));
+            }
+            if (role === Main._INTERN) {
+                this._teamArray.push(new Intern(name, email, school));
+            }
+            if (role === Main._MANAGER) {
+                this._teamArray.push(new Manager(name, email, roomNumber));
+            }
+        }
+
+        this._teamArray = [
+            new Engineer('engineer name', 'engineer email', 'engineer github'),
+            new Intern('intern name', 'intern email', 'intern school'),
+            new Manager('manager name', 'manager email', 'manager room number'),
+        ]
 
 Chccking that Data is coming through correctly:
 
