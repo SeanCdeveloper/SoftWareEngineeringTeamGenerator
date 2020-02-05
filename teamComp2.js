@@ -2,7 +2,6 @@ const inquirer = require("inquirer");
 const jest = require("jest");
 const util = require("util");
 const fs = require("fs");
-const Engineer = require("./lib/Engineer")
 // var http = require("http");
 // var fs = require("fs");
 //const members = require("./members")
@@ -20,31 +19,74 @@ return inquirer.prompt([
     },
     {
         type: "input",
-        message: "How many Engineers are on your team?",
-        name: "engineerNumber"
+        message: "What is the manager's id?",
+        name: "managerId"
     },
     {
         type: "input",
-        message: "How many Interns are on your team?",
-        name: "internNumber"
+        message: "What is the manager's email?",
+        name: "managerEmail"
+    },
+    {
+        type: "input",
+        message: "What is the manager's office number?",
+        name: "managerOffice"
+    },
+    {
+        type: "list",
+        message: "What type of member do you want to add?",
+        name: "memberAdd",
+        choices: [
+            {role: "Intern", value: "Intern"},
+            {role: "Engineer", value: "Engineer"}
+        ]
     },
 ]).then((response) => {
     console.log("Team Composition: ")
     console.log(response);
     let managerName = response.managerName;
-    let numOfEngineers = response.engineerNumber;
-    let numOfInterns = response.internNumber;
+    let managerId = response.managerId;
+    let managerEmail = response.managerEmail;
+    let managerOffice = response.managerOffice;
+    let memberAdd = response.memberAdd;
 
     teamData.managerName = managerName;
-    teamData.numOfEngineers = numOfEngineers;
-    teamData.numOfInterns = numOfInterns;    
-
-    if (numOfEngineers > 0) {
-        console.log("yes");
-        //new Engineer();
-    } else {
-        console.log("err");
+    teamData.managerId = managerId;
+    teamData.managerEmail = managerEmail;
+    teamData.managerOffice = managerOffice;
+    teamData.memberAdd = memberAdd;
+ /*
+    if (teamData.memberAdd === "Engineer") {
+        console.log("Engineer");
+        return inquirer.prompt([
+            {
+                type: "input",
+                message: "What the Engineer's GitHub username?",
+                name: "gitUserName"
+            }
+        ]).then((response) => {
+            let gitUserName = response.gitUserName;
+            teamData.gitUserName = gitUserName;
+            console.log(gitUserName);
+            console.log(teamData.gitUserName);
+        })
     }
+    if (teamData.memberAdd === "Intern") {
+        console.log("Intern");
+        return inquirer.prompt([
+            {
+                type: "input",
+                message: "What is the Intern's school?",
+                name: "internSchool"
+            }
+        ]).then((response) => {
+            let internSchool = response.internSchool;
+            teamData.internSchool = internSchool;
+            console.log(internSchool);
+            console.log(teamData.internSchool);
+        })
+    }
+    */
     return teamData;
 });
 }
@@ -94,14 +136,15 @@ function generateHTML(teamData) {
                <h1>Team Information:</h1>
                <ul class="list-group list-group-flush">
                    <li class="list-group-item"><b>Manager Name:</b>&nbsp; ${teamData.managerName}</li>
-                   <li class="list-group-item"><b>Number of Engineers:</b>&nbsp; ${teamData.numOfEngineers}</li>
-                   <li class="list-group-item"><b>Number of Interns:</b>&nbsp; ${teamData.numOfInterns}</li>
+                   <li class="list-group-item"><b>Manager Id:</b>&nbsp; ${teamData.managerId}</li>
+                   <li class="list-group-item"><b>Manager Email:</b>&nbsp; ${teamData.managerEmail}</li>
+                   <li class="list-group-item"><b>Manager Office:</b>&nbsp; ${teamData.managerOffice}</li>
+                   <li class="list-group-item"><b>New Member Added:</b>&nbsp; ${teamData.memberAdd}</li>
+                   <li class="list-group-item"><b>New Member Added:</b>&nbsp; ${teamData.gitUserName}</li>
+                   <li class="list-group-item"><b>New Member Added:</b>&nbsp; ${teamData.school}</li>
                </ul>
            </div>
        </div>
-       <script>
-        console.log("hello");
-       </script>
    </body>
    
    </html>
@@ -143,6 +186,10 @@ async function init() {
 
 init();
 
+module.exports = generateHTML;
+
+/* At some point, I have to create a new instance of each Employee Object */
+
 
 
 
@@ -150,11 +197,17 @@ init();
 
 Chccking that Data is coming through correctly:
 
-console.log(managerName);
-console.log(numOfEngineers);
-console.log(numOfInterns);
+1st Series:
 
-console.log(teamData.managerName);
-console.log(teamData.numOfEngineers);
-console.log(teamData.numofInterns);
+    console.log(managerName);
+    console.log(managerId);
+    console.log(managerEmail);
+    console.log(managerOffice);
+    console.log(memberAdd);
+
+    console.log(teamData.managerName);
+    console.log(teamData.managerId);
+    console.log(teamData.managerEmail);
+    console.log(teamData.managerOffice);
+    console.log(teamData.memberAdd);
 */
