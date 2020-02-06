@@ -40,7 +40,8 @@ return inquirer.prompt([
             {role: "Intern", value: "Intern"},
             {role: "Engineer", value: "Engineer"}
         ]
-    },
+    }
+    /*
     {
         type: "input",
         message: "Do you want to add another member?",
@@ -49,7 +50,8 @@ return inquirer.prompt([
             {choice: "yes", value: true},
             {choice: "no", value: false}
         ]
-    },
+    }
+    */
 ]).then((response) => {
     console.log("Team Composition: ");
     console.log(response);
@@ -74,11 +76,45 @@ return inquirer.prompt([
     switch (memberAdd) {
         case "Engineer":
             console.log("new Engineer");
+            inquirer.prompt([
+            {type: "input",
+            message: "What is the Engineer's Github Username?",
+            name: "gitUserName"
+            },
+            {
+                type: "input",
+                message: "Do you want to add another member?",
+                name: "furtherQuery",
+                choices: [
+                    {choice: "yes", value: true},
+                    {choice: "no", value: false}
+                ]
+            }
+            ]).then((response) => {
+                console.log(response);
+            });
             break;
         case "Intern":
             console.log("new Intern");
+            inquirer.prompt([
+                {type: "input",
+                message: "What is the Intern's School?",
+                name: "gitUserName"
+                },
+                {
+                    type: "input",
+                    message: "Do you want to add another member?",
+                    name: "furtherQuery",
+                    choices: [
+                        {choice: "yes", value: true},
+                        {choice: "no", value: false}
+                    ]
+                }
+                ]).then((response) => {
+                    console.log(response);
+                });
+            break;
         default: 
-        /*
         inquirer.prompt([
             {
                 type: "list",
@@ -90,7 +126,6 @@ return inquirer.prompt([
                 ]
             },
         ])
-        */
     }
 
  /*
