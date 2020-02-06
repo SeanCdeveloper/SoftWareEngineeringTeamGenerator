@@ -8,9 +8,24 @@ const fs = require("fs");
 
 const writeFileAsync = util.promisify(fs.writeFile);
 
+let teamSize = [];
+async function memberSize() {
+    await inquirer.prompt([
+        {
+        type: "input",
+        name: "numberOfMembers",
+        message: "Please enter your team size."
+        }
+    ]).then((response) => {
+        var memberNum = response.numberOfMembers;
+        teamSize.unshift(memberNum);
+    });
+}
+
 async function promptUser() {
 let teamData = {};
-
+console.log(teamSize[0]);
+for (let i=0; i<teamSize[0]; i++) {
 return inquirer.prompt([
     {
         type: "input",
@@ -34,29 +49,148 @@ return inquirer.prompt([
     },
     {
         type: "list",
-        message: "What type of member do you want to add?",
-        name: "memberAdd",
+        message: "What tean member do you want to add?",
+        name: "memberAdded",
         choices: [
             {role: "Intern", value: "Intern"},
             {role: "Engineer", value: "Engineer"}
         ]
     },
+    {
+        type: "input",
+        name: "engineerName",
+        message: "What is the Engineer's name?",
+        when: ({memberAdded}) => memberAdded === "Engineer"
+     },
+     {
+        type: "input",
+        name: "engineerId",
+        message: "What is the Engineer's Id?",
+        when: ({memberAdded}) => memberAdded === "Engineer"
+     },
+     {
+        type: "input",
+        name: "engineerEmail",
+        message: "What is the Engineer's email?",
+        when: ({memberAdded}) => memberAdded === "Engineer"
+     },
+    {
+        type: "input",
+        name: "github",
+        message: "Please input the Engineer's github username.",
+        when: ({memberAdded}) => memberAdded === "Engineer"
+     },
+     {
+        type: "input",
+        name: "school",
+        message: "What is the Intern's name?",
+        when: ({memberAdded}) => memberAdded === "Intern"
+     },
+     {
+        type: "input",
+        name: "school",
+        message: "What is the Intern's Id?",
+        when: ({memberAdded}) => memberAdded === "Intern"
+     },
+     {
+        type: "input",
+        name: "school",
+        message: "What is the Intern's email?",
+        when: ({memberAdded}) => memberAdded === "Intern"
+     },
+     {
+         type: "input",
+         name: "school",
+         message: "Please input the Intern's school.",
+         when: ({memberAdded}) => memberAdded === "Intern"
+      },
+    {
+        type: "confirm",
+        message: "Do you want to add another member?",
+        name: "furtherQuery",
+        choices: [
+            {choice: "yes", value: true},
+            {choice: "no", value: false}
+        ]
+    }
 ]).then((response) => {
-    console.log("Team Composition: ")
+    console.log("Team Composition: ");
     console.log(response);
     let managerName = response.managerName;
     let managerId = response.managerId;
     let managerEmail = response.managerEmail;
     let managerOffice = response.managerOffice;
-    let memberAdd = response.memberAdd;
+    let memberAdded = response.memberAdded;
 
     teamData.managerName = managerName;
     teamData.managerId = managerId;
     teamData.managerEmail = managerEmail;
     teamData.managerOffice = managerOffice;
-    teamData.memberAdd = memberAdd;
- 
-    if (teamData.memberAdd === "Engineer") {
+    teamData.memberAdded = memberAdded;
+    console.log("teamData-----------");
+    console.log(teamData);
+    
+    let furtherQuery = response.furtherQuery;
+    console.log(furtherQuery);
+
+    /* May want to put an async addition here.  I want this to run after all the members are created 
+    switch (memberAdd) {
+        case "Engineer":
+            console.log("new Engineer");
+            inquirer.prompt([
+            {type: "input",
+            message: "What is the Engineer's Github Username?",
+            name: "gitUserName"
+            },
+            {
+                type: "input",
+                message: "Do you want to add another member?",
+                name: "furtherQuery",
+                choices: [
+                    {choice: "yes", value: true},
+                    {choice: "no", value: false}
+                ]
+            }
+            ]).then((response) => {
+                console.log(response);
+            });
+            break;
+        case "Intern":
+            console.log("new Intern");
+            inquirer.prompt([
+                {type: "input",
+                message: "What is the Intern's School?",
+                name: "gitUserName"
+                },
+                {
+                    type: "input",
+                    message: "Do you want to add another member?",
+                    name: "furtherQuery",
+                    choices: [
+                        {choice: "yes", value: true},
+                        {choice: "no", value: false}
+                    ]
+                }
+                ]).then((response) => {
+                    console.log(response);
+                });
+            break;
+        default: 
+        inquirer.prompt([
+            {
+                type: "list",
+                message: "What type of member do you want to add?",
+                name: "memberAdd",
+                choices: [
+                    {role: "Intern", value: "Intern"},
+                    {role: "Engineer", value: "Engineer"}
+                ]
+            },
+        ])
+    }
+
+ /*
+    if (teamData.memberAdded === "Engineer") {
         console.log("Engineer");
         return inquirer.prompt([
             {
@@ -71,7 +205,7 @@ return inquirer.prompt([
             console.log(teamData.gitUserName);
         })
     }
-    if (teamData.memberAdd === "Intern") {
+    if (teamData.memberAdded === "Intern") {
         console.log("Intern");
         return inquirer.prompt([
             {
@@ -99,11 +233,13 @@ return inquirer.prompt([
             ]);
         }).then((response) => {
             let memberAdd = response.memberAdd;
-            teamData.memberAdd = response.memberAdd;
+            teamData.memberAdd = response.memberAdd; 
         });
     }
+    */
     return teamData;
 });
+}
 }
 
 function generateHTML(teamData) {
@@ -190,8 +326,9 @@ function generateHTML(teamData) {
 
 async function init() {
     try {
+        const teamSize = await memberSize();
         const teamData = await promptUser();
-        console.log('data generated before generateHTML: ' + teamData);
+       // console.log('data generated before generateHTML: ' + teamData);
         const html = generateHTML(teamData);
         await writeFileAsync("./output/team.html", html);
     } catch (err) {
@@ -201,7 +338,7 @@ async function init() {
 
 init();
 
-module.exports = generateHTML;
+//module.exports = generateHTML;
 
 /* At some point, I have to create a new instance of each Employee Object */
 
@@ -209,6 +346,23 @@ module.exports = generateHTML;
 
 
 /*
+
+if (role === Main._ENGINEER) {
+                this._teamArray.push(new Engineer(name, email, github));
+            }
+            if (role === Main._INTERN) {
+                this._teamArray.push(new Intern(name, email, school));
+            }
+            if (role === Main._MANAGER) {
+                this._teamArray.push(new Manager(name, email, roomNumber));
+            }
+        }
+
+        this._teamArray = [
+            new Engineer('engineer name', 'engineer email', 'engineer github'),
+            new Intern('intern name', 'intern email', 'intern school'),
+            new Manager('manager name', 'manager email', 'manager room number'),
+        ]
 
 Chccking that Data is coming through correctly:
 

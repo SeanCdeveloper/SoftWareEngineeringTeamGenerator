@@ -2,9 +2,6 @@ const inquirer = require("inquirer");
 const jest = require("jest");
 const util = require("util");
 const fs = require("fs");
-// var http = require("http");
-// var fs = require("fs");
-//const members = require("./members")
 
 const writeFileAsync = util.promisify(fs.writeFile);
 
@@ -17,18 +14,15 @@ async function memberSize() {
         message: "Please enter your team size."
         }
     ]).then((response) => {
-        console.log(response);
         var memberNum = response.numberOfMembers;
-        console.log(memberNum);
-        teamSize.push(memberNum);
-        console.log(teamSize);
+        teamSize.unshift(memberNum);
     });
 }
 
 async function promptUser() {
 let teamData = {};
-let teamArray = {};
-
+console.log(teamSize[0]);
+for (let i=0; i<teamSize[0]; i++) {
 return inquirer.prompt([
     {
         type: "input",
@@ -85,25 +79,25 @@ return inquirer.prompt([
      },
      {
         type: "input",
-        name: "school",
+        name: "internName",
         message: "What is the Intern's name?",
         when: ({memberAdded}) => memberAdded === "Intern"
      },
      {
         type: "input",
-        name: "school",
+        name: "internId",
         message: "What is the Intern's Id?",
         when: ({memberAdded}) => memberAdded === "Intern"
      },
      {
         type: "input",
-        name: "school",
+        name: "internEmail",
         message: "What is the Intern's email?",
         when: ({memberAdded}) => memberAdded === "Intern"
      },
      {
          type: "input",
-         name: "school",
+         name: "internSchool",
          message: "Please input the Intern's school.",
          when: ({memberAdded}) => memberAdded === "Intern"
       },
@@ -125,17 +119,36 @@ return inquirer.prompt([
     let managerOffice = response.managerOffice;
     let memberAdded = response.memberAdded;
 
+/* Engineer / Intern Info */
+    let engineerName = response.engineerName;
+    let engineerId = response.engineerId;
+    let engineerEmail = response.engineerEmail;
+    let github = response.github;
+    let internName = response.internName;
+    let internId = response.internId;
+    let internEmail = response.internEmail;
+    let internSchool = response.internSchool;
+/*
     teamData.managerName = managerName;
     teamData.managerId = managerId;
     teamData.managerEmail = managerEmail;
     teamData.managerOffice = managerOffice;
+    teamData.engineerName = engineerName;
+    teamData.engineerId = engineerId;
+    teamData.engineerEmail = engineerEmail;
+    teamData.github = github;
+    teamData.internName = internName;
+    teamData.internId = internId;
+    teamData.internEmail = internEmail;
+    teamData.internSchool = internSchool;
+
     teamData.memberAdded = memberAdded;
     console.log("teamData-----------");
     console.log(teamData);
-    
+  
     let furtherQuery = response.furtherQuery;
     console.log(furtherQuery);
-
+*/
     /* May want to put an async addition here.  I want this to run after all the members are created 
     switch (memberAdd) {
         case "Engineer":
@@ -243,6 +256,7 @@ return inquirer.prompt([
     return teamData;
 });
 }
+}
 
 function generateHTML(teamData) {
    return `<!DOCTYPE html>
@@ -340,7 +354,7 @@ async function init() {
 
 init();
 
-module.exports = generateHTML;
+//module.exports = generateHTML;
 
 /* At some point, I have to create a new instance of each Employee Object */
 
@@ -381,4 +395,13 @@ Chccking that Data is coming through correctly:
     console.log(teamData.managerEmail);
     console.log(teamData.managerOffice);
     console.log(teamData.memberAdd);
+
+        console.log(engineerName);
+    console.log(engineerId);
+    console.log(engineerEmail);
+    console.log(github);
+    console.log(internName);
+    console.log(internId);
+    console.log(internEmail);
+    console.log(internSchool);
 */
