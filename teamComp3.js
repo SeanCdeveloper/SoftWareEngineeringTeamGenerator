@@ -90,7 +90,7 @@ return inquirer.prompt([
          when: ({memberAdded}) => memberAdded === "Intern"
       },
     {
-        type: "input",
+        type: "confirm",
         message: "Do you want to add another member?",
         name: "furtherQuery",
         choices: [
