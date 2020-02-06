@@ -128,7 +128,7 @@ return inquirer.prompt([
     let internId = response.internId;
     let internEmail = response.internEmail;
     let internSchool = response.internSchool;
-/*
+
     teamData.managerName = managerName;
     teamData.managerId = managerId;
     teamData.managerEmail = managerEmail;
@@ -141,14 +141,13 @@ return inquirer.prompt([
     teamData.internId = internId;
     teamData.internEmail = internEmail;
     teamData.internSchool = internSchool;
-
     teamData.memberAdded = memberAdded;
+
+    /*
     console.log("teamData-----------");
     console.log(teamData);
-  
-    let furtherQuery = response.furtherQuery;
-    console.log(furtherQuery);
-*/
+  */
+
     /* May want to put an async addition here.  I want this to run after all the members are created 
     switch (memberAdd) {
         case "Engineer":
@@ -306,9 +305,7 @@ function generateHTML(teamData) {
                    <li class="list-group-item"><b>Manager Id:</b>&nbsp; ${teamData.managerId}</li>
                    <li class="list-group-item"><b>Manager Email:</b>&nbsp; ${teamData.managerEmail}</li>
                    <li class="list-group-item"><b>Manager Office:</b>&nbsp; ${teamData.managerOffice}</li>
-                   <li class="list-group-item"><b>New Member Added:</b>&nbsp; ${teamData.memberAdd}</li>
-                   <li class="list-group-item"><b>New Member Added:</b>&nbsp; ${teamData.gitUserName}</li>
-                   <li class="list-group-item"><b>New Member Added:</b>&nbsp; ${teamData.internSchool}</li>
+                   <li class="list-group-item"><b>New Member Added:</b>&nbsp; ${teamData.memberAdded}</li>
                </ul>
            </div>
        </div>
@@ -317,9 +314,7 @@ function generateHTML(teamData) {
    </html>
       
    <!--
-       <div>Manager Name: ${teamData.managerName}</div>
-               <div>Number of Engineers: ${teamData.numOfEngineers}</div>
-               <div>Number of Interns: ${teamData.numOfInterns}</div>
+       
    
        <a href="/frameworks">Frameworks</a> |
                    <a href="/food">Food</a>
