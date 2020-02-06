@@ -10,7 +10,6 @@ const writeFileAsync = util.promisify(fs.writeFile);
 
 async function promptUser() {
 let teamData = {};
-
 return inquirer.prompt([
     {
         type: "input",

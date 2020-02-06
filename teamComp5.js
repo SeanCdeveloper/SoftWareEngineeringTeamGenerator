@@ -37,24 +37,24 @@ constructor () {
                        type: "input",
                        name: "github",
                        message: "Please input your github username.",
-                       when: ([role]) => response === "Engineer"
+                       when: ({role}) => response === "Engineer"
                     },
                     {
                         type: "input",
                         name: "school",
                         message: "Please input your github username.",
-                        when: ([role]) => response === "Intern"
+                        when: ({role}) => response === "Intern"
                      },
                      {
                         type: "input",
                         name: "roomnumber",
                         message: "Please input your github username.",
-                        when: ([role]) => response === "Manager"
+                        when: ({role}) => response === "Manager"
                      }
                 ]);
                this._teamArray.push(response);
             }
-        console.log(this._teamArray);
+            console.log(this._teamArray);
     }
 }
 

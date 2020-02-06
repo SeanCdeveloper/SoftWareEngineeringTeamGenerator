@@ -8,8 +8,26 @@ const fs = require("fs");
 
 const writeFileAsync = util.promisify(fs.writeFile);
 
+let teamSize = [];
+async function memberSize() {
+    await inquirer.prompt([
+        {
+        type: "input",
+        name: "numberOfMembers",
+        message: "Please enter your team size."
+        }
+    ]).then((response) => {
+        console.log(response);
+        var memberNum = response.numberOfMembers;
+        console.log(memberNum);
+        teamSize.push(memberNum);
+        console.log(teamSize);
+    });
+}
+
 async function promptUser() {
 let teamData = {};
+let teamArray = {};
 
 return inquirer.prompt([
     {
@@ -90,7 +108,7 @@ return inquirer.prompt([
          when: ({memberAdded}) => memberAdded === "Intern"
       },
     {
-        type: "input",
+        type: "confirm",
         message: "Do you want to add another member?",
         name: "furtherQuery",
         choices: [
@@ -310,6 +328,7 @@ function generateHTML(teamData) {
 
 async function init() {
     try {
+        const teamSize = await memberSize();
         const teamData = await promptUser();
        // console.log('data generated before generateHTML: ' + teamData);
         const html = generateHTML(teamData);
