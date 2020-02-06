@@ -40,7 +40,19 @@ return inquirer.prompt([
             {role: "Intern", value: "Intern"},
             {role: "Engineer", value: "Engineer"}
         ]
-    }
+    },
+    {
+        type: "input",
+        name: "github",
+        message: "Please input the Engineer's github username.",
+        when: ({memberAdd}) => memberAdd === "Engineer"
+     },
+     {
+         type: "input",
+         name: "school",
+         message: "Please input the Intern's school.",
+         when: ({memberAdd}) => memberAdd === "Intern"
+      },
     /*
     {
         type: "input",
@@ -72,7 +84,7 @@ return inquirer.prompt([
     let furtherQuery = response.furtherQuery;
     console.log(furtherQuery);
 
-    /* May want to put an async addition here.  I want this to run after all the members are created */
+    /* May want to put an async addition here.  I want this to run after all the members are created 
     switch (memberAdd) {
         case "Engineer":
             console.log("new Engineer");
