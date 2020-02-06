@@ -34,8 +34,8 @@ return inquirer.prompt([
     },
     {
         type: "list",
-        message: "What type of member do you want to add?",
-        name: "memberAdd",
+        message: "What tean member do you want to add?",
+        name: "memberAdded",
         choices: [
             {role: "Intern", value: "Intern"},
             {role: "Engineer", value: "Engineer"}
@@ -43,17 +43,52 @@ return inquirer.prompt([
     },
     {
         type: "input",
+        name: "engineerName",
+        message: "What is the Engineer's name?",
+        when: ({memberAdded}) => memberAdded === "Engineer"
+     },
+     {
+        type: "input",
+        name: "engineerId",
+        message: "What is the Engineer's Id?",
+        when: ({memberAdded}) => memberAdded === "Engineer"
+     },
+     {
+        type: "input",
+        name: "engineerEmail",
+        message: "What is the Engineer's email?",
+        when: ({memberAdded}) => memberAdded === "Engineer"
+     },
+    {
+        type: "input",
         name: "github",
         message: "Please input the Engineer's github username.",
-        when: ({memberAdd}) => memberAdd === "Engineer"
+        when: ({memberAdded}) => memberAdded === "Engineer"
+     },
+     {
+        type: "input",
+        name: "school",
+        message: "What is the Intern's name?",
+        when: ({memberAdded}) => memberAdded === "Intern"
+     },
+     {
+        type: "input",
+        name: "school",
+        message: "What is the Intern's Id?",
+        when: ({memberAdded}) => memberAdded === "Intern"
+     },
+     {
+        type: "input",
+        name: "school",
+        message: "What is the Intern's email?",
+        when: ({memberAdded}) => memberAdded === "Intern"
      },
      {
          type: "input",
          name: "school",
          message: "Please input the Intern's school.",
-         when: ({memberAdd}) => memberAdd === "Intern"
+         when: ({memberAdded}) => memberAdded === "Intern"
       },
-    /*
     {
         type: "input",
         message: "Do you want to add another member?",
@@ -63,7 +98,6 @@ return inquirer.prompt([
             {choice: "no", value: false}
         ]
     }
-    */
 ]).then((response) => {
     console.log("Team Composition: ");
     console.log(response);
@@ -71,13 +105,13 @@ return inquirer.prompt([
     let managerId = response.managerId;
     let managerEmail = response.managerEmail;
     let managerOffice = response.managerOffice;
-    let memberAdd = response.memberAdd;
+    let memberAdded = response.memberAdded;
 
     teamData.managerName = managerName;
     teamData.managerId = managerId;
     teamData.managerEmail = managerEmail;
     teamData.managerOffice = managerOffice;
-    //teamData.memberAdd = memberAdd;
+    teamData.memberAdded = memberAdded;
     console.log("teamData-----------");
     console.log(teamData);
     
@@ -141,7 +175,7 @@ return inquirer.prompt([
     }
 
  /*
-    if (teamData.memberAdd === "Engineer") {
+    if (teamData.memberAdded === "Engineer") {
         console.log("Engineer");
         return inquirer.prompt([
             {
@@ -156,7 +190,7 @@ return inquirer.prompt([
             console.log(teamData.gitUserName);
         })
     }
-    if (teamData.memberAdd === "Intern") {
+    if (teamData.memberAdded === "Intern") {
         console.log("Intern");
         return inquirer.prompt([
             {
