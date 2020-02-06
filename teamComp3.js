@@ -265,7 +265,7 @@ function generateHTML(teamData) {
 async function init() {
     try {
         const teamData = await promptUser();
-        console.log('data generated before generateHTML: ' + teamData);
+       // console.log('data generated before generateHTML: ' + teamData);
         const html = generateHTML(teamData);
         await writeFileAsync("./output/team.html", html);
     } catch (err) {
