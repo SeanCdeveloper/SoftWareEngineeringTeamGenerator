@@ -5,6 +5,8 @@ const fs = require("fs");
 
 const writeFileAsync = util.promisify(fs.writeFile);
 
+let managerInfo = {}
+
 let teamSize = [];
 async function memberSize() {
     await inquirer.prompt([
@@ -22,7 +24,7 @@ async function memberSize() {
 async function promptUser() {
     let teamData = {};
     for (let i = 0; i < teamSize[0]; i++) {
-        return inquirer.prompt([
+        await inquirer.prompt([
             {
                 type: "input",
                 message: "What is the name of the Team Manager?",
@@ -100,15 +102,6 @@ async function promptUser() {
                 message: "Please input the Intern's school.",
                 when: ({ memberAdded }) => memberAdded === "Intern"
             },
-            {
-                type: "confirm",
-                message: "Do you want to add another member?",
-                name: "furtherQuery",
-                choices: [
-                    { choice: "yes", value: true },
-                    { choice: "no", value: false }
-                ]
-            }
         ]).then((response) => {
             console.log("Team Composition: ");
             console.log(response);
@@ -145,6 +138,7 @@ async function promptUser() {
             return teamData;
         });
     }
+    return teamData;
 }
 
 function generateHTML(teamData) {
